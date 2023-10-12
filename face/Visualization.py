@@ -1,7 +1,12 @@
+import cv2
 import numpy as np
 import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
+
+from views import visualize
+
+IMAGE_FILE = 'image.jpg'
 
 # STEP 2: Create an FaceDetector object.
 base_options = python.BaseOptions(model_asset_path='detector.tflite')
@@ -18,4 +23,4 @@ detection_result = detector.detect(image)
 image_copy = np.copy(image.numpy_view())
 annotated_image = visualize(image_copy, detection_result)
 rgb_annotated_image = cv2.cvtColor(annotated_image, cv2.COLOR_BGR2RGB)
-cv2_imshow(rgb_annotated_image)
+cv2.imshow(rgb_annotated_image)
